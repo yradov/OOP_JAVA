@@ -11,14 +11,18 @@ public class Main {
         System.out.println("name: " + animal1.name);
         animal1.makeSounds();
         animal2.makeSounds();
+        Dog dog1 = new Dog(3, "Richi");
+        System.out.println(dog1.name);
+        dog1.makeSounds();
     }
 }
 
 class Animal {
     int age;
     String name;
-    public Animal() {
-    }
+
+//    public Animal() {
+//    }
 
     public Animal(int age, String name) {
         this.age = age;
@@ -30,3 +34,14 @@ class Animal {
     }
 }
 
+class Dog extends Animal {
+
+    public Dog(int age, String name) {
+        super(age, name);
+    }
+
+    @Override
+    void makeSounds() {
+        System.out.println("dog " + this.name + " make sounds");
+    }
+}
