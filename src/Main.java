@@ -14,6 +14,13 @@ public class Main {
         Dog dog1 = new Dog(3, "Richi");
         System.out.println(dog1.name);
         dog1.makeSounds();
+        System.out.println("==========");
+        Cat cat1 = new Cat(20, "Seba");
+        Cat cat2 = new Cat(5, "Boba");
+        System.out.println(cat1.name);
+        System.out.println(cat2.name);
+        cat1.makeSounds();
+        cat2.makeSounds();
     }
 }
 
@@ -43,5 +50,16 @@ class Dog extends Animal {
     @Override
     void makeSounds() {
         System.out.println("dog " + this.name + " make sounds");
+    }
+}
+
+class Cat extends Animal {
+
+    public Cat(int age, String name) {
+        super(age, name);
+    }
+    @Override
+    void makeSounds() {
+        System.out.println("cat " + this.name + " make sounds");
     }
 }
