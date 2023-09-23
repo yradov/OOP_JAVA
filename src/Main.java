@@ -37,10 +37,14 @@ public class Main {
         cat1.breath();
         cat2.breath();
         cat3.breath();
+        System.out.println("===========================");
+        System.out.println("Total objects: " + Animal.number);
+        Animal.showNumber();
     }
 }
 
 abstract class Animal {
+    static int number = 0;
     private int age;
     private String name;
 
@@ -77,6 +81,7 @@ abstract class Animal {
     public Animal(int age, String name) {
         setAge(age);
         setName(name);
+        number++;
     }
 
     void breath() {
@@ -84,6 +89,9 @@ abstract class Animal {
     }
 
     abstract void makeSounds();
+    static void showNumber() {
+        System.out.println(number);
+    }
 } // Animal
 
 class Dog extends Animal {
