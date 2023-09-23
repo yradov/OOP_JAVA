@@ -1,3 +1,7 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         //System.out.printf("Hello and welcome!");
@@ -40,6 +44,20 @@ public class Main {
         System.out.println("===========================");
         System.out.println("Total objects: " + Animal.number);
         Animal.showNumber();
+        System.out.println("===========================");
+        /**
+         * POLYMORPHISM
+         */
+        Animal dog2 = new Dog(2,"Jack");
+        Animal cat4 = new Cat(5,"Archi");
+        List<Animal> animals = new ArrayList<>();
+        animals.add(dog2);
+        animals.add(cat4);
+        animals.add(cat1);
+        animals.add(dog1);
+        for(Animal animal : animals) {
+            animal.makeSounds();
+        }
     }
 }
 
@@ -123,5 +141,12 @@ class Cat extends Animal {
                 "age=" + this.getAge() +
                 ", name='" + this.getName() + '\'' +
                 '}';
+    }
+}
+
+abstract class Bird extends Animal {
+
+    public Bird(int age, String name) {
+        super(age, name);
     }
 }
