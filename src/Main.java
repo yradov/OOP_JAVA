@@ -48,21 +48,44 @@ public class Main {
         /**
          * POLYMORPHISM
          */
-        Animal dog2 = new Dog(2,"Jack");
-        Animal cat4 = new Cat(5,"Archi");
+        Animal dog2 = new Dog(2, "Jack");
+        Animal cat4 = new Cat(5, "Archi");
         List<Animal> animals = new ArrayList<>();
         animals.add(dog2);
         animals.add(cat4);
         animals.add(cat1);
         animals.add(dog1);
-        for(Animal animal : animals) {
+        for (Animal animal : animals) {
             animal.makeSounds();
         }
+        System.out.println("===========================");
+        Bird seagull = new Seagull();
+        seagull.breath();
+        seagull.makeSounds();
+        seagull.fly();
     }
 }
 
 abstract class Animal {
     static int number = 0;
+//    public Animal() {
+//    }
+
+    public Animal() {
+
+        number++;
+    }
+
+    abstract void breath();
+
+    abstract void makeSounds();
+
+    static void showNumber() {
+        System.out.println(number);
+    }
+} // Animal
+
+abstract class DomasticAnimal extends Animal {
     private int age;
     private String name;
 
@@ -79,6 +102,12 @@ abstract class Animal {
         }
     }
 
+    public DomasticAnimal(int age, String name) {
+        setAge(age);
+        setName(name);
+
+    }
+
     public String getName() {
         return name;
     }
@@ -91,43 +120,34 @@ abstract class Animal {
             this.name = "UNKNOWN";
         }
     }
+}
 
-
-//    public Animal() {
-//    }
-
-    public Animal(int age, String name) {
-        setAge(age);
-        setName(name);
-        number++;
-    }
-
-    void breath() {
-        System.out.println(this.name + " breath");
-    }
-
-    abstract void makeSounds();
-    static void showNumber() {
-        System.out.println(number);
-    }
-} // Animal
-
-class Dog extends Animal {
+class Dog extends DomasticAnimal {
 
     public Dog(int age, String name) {
         super(age, name);
     }
 
+
     @Override
+    void breath() {
+        System.out.println(getName() + "Dog is breathing");
+    }
+
     void makeSounds() {
         System.out.println("dog " + this.getName() + " make sounds");
     }
 }
 
-class Cat extends Animal {
+class Cat extends DomasticAnimal {
 
     public Cat(int age, String name) {
         super(age, name);
+    }
+
+    @Override
+    void breath() {
+        System.out.println(getName() + "Cat is breathing");
     }
 
     @Override
@@ -144,10 +164,30 @@ class Cat extends Animal {
     }
 }
 
-abstract class Bird extends Animal {
+interface Flying {
+    void fly();
 
-    public Bird(int age, String name) {
-        super(age, name);
-    }
 }
 
+abstract class Bird extends Animal implements Flying {
+
+}
+
+class Seagull extends Bird {
+
+
+    @Override
+    void breath() {
+        System.out.println("Bird " + this.getClass().getName() + " breath");
+    }
+
+    @Override
+    void makeSounds() {
+        System.out.println("seagull makes sounds");
+    }
+
+    @Override
+    public void fly() {
+        System.out.println(this.getClass().getName() + " is flying");
+    }
+}
