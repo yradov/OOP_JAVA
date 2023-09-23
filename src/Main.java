@@ -34,6 +34,9 @@ public class Main {
         cat3.setAge(10);
         System.out.println(cat3);
         System.out.println(cat3.getAge());
+        cat1.breath();
+        cat2.breath();
+        cat3.breath();
     }
 }
 
@@ -76,10 +79,12 @@ abstract class Animal {
         setName(name);
     }
 
-    void makeSounds() {
-        System.out.println("animal " + this.name + " make sounds");
+    void breath() {
+        System.out.println(this.name + " breath");
     }
-}
+
+    abstract void makeSounds();
+} // Animal
 
 class Dog extends Animal {
 
