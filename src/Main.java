@@ -59,10 +59,15 @@ public class Main {
             animal.makeSounds();
         }
         System.out.println("===========================");
-        Bird seagull = new Seagull();
+        Seagull seagull = new Seagull();
         seagull.breath();
         seagull.makeSounds();
         seagull.fly();
+        System.out.println("===========================");
+        SwimingBird penguin = new Penguin();
+        penguin.breath();
+        penguin.makeSounds();
+        penguin.swim();
     }
 }
 
@@ -169,12 +174,24 @@ interface Flying {
 
 }
 
-abstract class Bird extends Animal implements Flying {
+interface Swiming {
+    void swim();
+}
+
+interface FlyingAndSwimming extends Flying, Swiming {
+
+}
+abstract class Bird extends Animal {
+
+}
+abstract class FlyingBird extends Bird implements Flying{
+
+}
+abstract class SwimingBird extends Bird implements Swiming{
 
 }
 
-class Seagull extends Bird {
-
+class Seagull extends Bird implements FlyingAndSwimming {
 
     @Override
     void breath() {
@@ -189,5 +206,30 @@ class Seagull extends Bird {
     @Override
     public void fly() {
         System.out.println(this.getClass().getName() + " is flying");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println("seagull is swimming");
+    }
+}
+
+class Penguin extends SwimingBird {
+
+
+    @Override
+    void breath() {
+        System.out.println("Bird " + this.getClass().getName() + " breath");
+    }
+
+    @Override
+    void makeSounds() {
+        System.out.println("penguin makes sounds");
+    }
+
+    @Override
+    public void swim() {
+        System.out.println("penguin is swimming");
+
     }
 }
