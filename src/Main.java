@@ -11,16 +11,23 @@ public class Main {
         System.out.println("name: " + animal1.name);
         animal1.makeSounds();
         animal2.makeSounds();
+        System.out.println("===========================");
         Dog dog1 = new Dog(3, "Richi");
         System.out.println(dog1.name);
         dog1.makeSounds();
-        System.out.println("==========");
+        System.out.println("===========================");
         Cat cat1 = new Cat(20, "Seba");
         Cat cat2 = new Cat(5, "Boba");
         System.out.println(cat1.name);
         System.out.println(cat2.name);
         cat1.makeSounds();
         cat2.makeSounds();
+        System.out.println(cat1);
+        System.out.println(cat2);
+        System.out.println("===========================");
+        Cat cat3 = new Cat(-20, "Tom");
+        System.out.println(cat3);
+
     }
 }
 
@@ -28,12 +35,39 @@ class Animal {
     int age;
     String name;
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        if (age > 0) {
+            this.age = age;
+        } else {
+            System.out.println("Age cannot be less then 0");
+            this.age = 0;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (!name.isEmpty() && name.length() > 2) {
+            this.name = name;
+        } else {
+            System.out.println("Name cannot be blank");
+            this.name = "UNKNOWN";
+        }
+    }
+
+
 //    public Animal() {
 //    }
 
     public Animal(int age, String name) {
-        this.age = age;
-        this.name = name;
+        setAge(age);
+        setName(name);
     }
 
     void makeSounds() {
@@ -58,8 +92,17 @@ class Cat extends Animal {
     public Cat(int age, String name) {
         super(age, name);
     }
+
     @Override
     void makeSounds() {
         System.out.println("cat " + this.name + " make sounds");
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
